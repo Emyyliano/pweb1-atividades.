@@ -24,6 +24,10 @@ O código aponta dois erros de sintaxe, tanto (;), quanto o (?>), exibem um erro
 Host: localhost:8000
 Date: Sat, 10 Oct 2026 17:05:25 GMT
 Connection: close
+...
+
+<br />
+<b>Parse error</b>:  syntax error, unexpected token &quot;echo&quot; in <b>C:...\GitHub\pweb1-atividades\aula02-php-http\q02-erros\erro.php</b> on line <b>11</b><br />
 ```
 
 **Explicação linha por linha:**
@@ -58,4 +62,20 @@ O correto é o *500*, pois no caso do *200*, você acessar um site mesmo ele ten
 
 **3.3 Corrija o código, faça um commit e cole aqui o log da execução corrigida.**
 
-_(responda aqui)_
+HTTP/1.1 200 OK
+Host: localhost:8000
+Date: Sat, 10 Oct 2026 17:22:26 GMT
+Connection: close
+X-Powered-By: PHP/8.5.11
+Content-type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Bem-vindo ao curso de ADS</body>
+</html>
