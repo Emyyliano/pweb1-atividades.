@@ -51,28 +51,36 @@ mesma coisa da questão anterior, na URL é atribuido os dois valores e o códig
 
 **Explicação linha por linha:**
 
-_(responda aqui)_
+como dito antes, como não foi atribuido nenhum valor a n2, o ?? substituiu pelo valor fixo, no caso 0
 
 **2.3 Log do servidor das duas requisições acima**
 
 ```text
-(cole aqui a saída do terminal)
+[Sun Oct 11 13:58:04 2026] [::1]:56730 Accepted
+[Sun Oct 11 13:58:04 2026] [::1]:56730 [200]: GET /media.php?n1=5&n2=6
+[Sun Oct 11 13:58:04 2026] [::1]:56730 Closing
+
+[Sun Oct 11 14:05:09 2026] [::1]:49552 Accepted
+[Sun Oct 11 14:05:09 2026] [::1]:49552 [200]: GET /media.php?n1=9
+[Sun Oct 11 14:05:09 2026] [::1]:49552 Closing
 ```
 
 **Explicação linha por linha:**
 
-_(responda aqui)_
+*GET*: método de requisão que vai puxar da URL
+*200*: status que carregou o site com sucesso 
+*/media.php?n1&n2*: caminho da requesição e o querystring, o que vem depois da ?
 
 ## 3. Perguntas
 
 **3.1 No log, onde aparecem os valores das notas? Que parte da URL é essa?**
 
-_(responda aqui)_
+*?n1=5&n2=6*: os valores aparecem após a ?, no fim da URL
 
 **3.2 Na requisição 2.2, a nota 2 não foi enviada. Qual valor o código usou? Qual operador garantiu isso?**
 
-_(responda aqui)_
+o valor enviado foi 0, o operador responsável foi o ?, que garante um "valor" fixo, quando tem a ausencia de um atribuido a variável. 
 
 **3.3 O que acontece com `?n1=abc&n2=10`? Explique o papel do `(float)`.**
 
-_(responda aqui)_
+n1 acaba recebendo o valor 0, devido o ? atribuido com o 0. O float faz o papel de encontrar número inteiros e decimais, como abc não é número ele atribui o 0.
