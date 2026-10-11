@@ -12,7 +12,7 @@
 
 **1.1 O arquivo mistura HTML e PHP. Indique quais linhas são HTML e quais são PHP.**
 
-Das linhas 1 a 7;11 a 12 são HTML. Das linhas 8 a 10 são PHP
+Das linhas 1 a 7; 11 a 12 são HTML. Das linhas 8 a 10 são PHP
 
 **1.2 Qual a diferença entre `<?php echo ... ?>` e `<?= ... ?>`?**
 
@@ -33,28 +33,29 @@ Das linhas 1 a 7;11 a 12 são HTML. Das linhas 8 a 10 são PHP
 
 **Explicação linha por linha:**
 
-*[Wed Oct  7 15:53:35 2026]*: data e hora que o servidor foi iniciado;
-*PHP 8.5.11*: a versão do meu PHP;
+`[Wed Oct  7 15:53:35 2026]`: data e hora que o servidor foi iniciado;
 
-*Development Server*: confirma que é o servidor de desenvolvimento;
+`PHP 8.5.11`: a versão do meu PHP;
 
-*(http://localhost:8000)*: endereço que o servidor criou;
+`Development Server`: confirma que é o servidor de desenvolvimento;
 
-*started:*: indica que ele foi iniciado.
+`("http//localhost:8000)`: endereço que o servidor criou;
 
-*[::1]*: abreviação de localhost, está acessando minha máquina;
+`started:`: indica que ele foi iniciado.
 
-*:62240*: porta selecionada para o navegador usar;
+`[::1]`: abreviação de localhost, está acessando minha máquina;
 
-*Accepted*: aceito.
+`:62240`: porta selecionada para o navegador usar;
 
-*[200]*: código de status da resposta de (OK);
+`Accepted`: aceito.
 
-*GET*: método que o navegador usou;
+`[200]`: código de status da resposta de (OK);
 
-*/ola.php*: nome do arquivo;
+`GET`: método que o navegador usou;
 
-*Closing:*: ta fechado, o servidor enviou o conteúdo pro arquivo;
+`/ola.php`: nome do arquivo;
+
+`Closing:`: ta fechado, o servidor enviou o conteúdo pro arquivo;
 
 **2.2 Saída de `curl.exe -i http://localhost:8000/q01-primeiro-script/ola.php`**
 
@@ -84,21 +85,21 @@ Content-Length: 628
 
 **Explicação linha por linha:**
 
-*HTTP/1.1*: versão do http 
+`HTTP/1.1`: versão do http 
 
-*200 OK*: status da resposta, informa que deu tudo certo;
+`200 OK`: status da resposta, informa que deu tudo certo;
 
-*Host: localhost:8000*: enedereço e a porta que sendo acessado;
+`Host: localhost:8000`: enedereço e a porta que sendo acessado;
 
-*Date: Wed, 07 Oct 2026 19:25:33 GMT*: indica a data hora;
+`Date: Wed, 07 Oct 2026 19:25:33 GMT`: indica a data hora;
 
-*Connection: close*: a conexão vai ser encerrada quando retornar a resposta;
+`Connection: close`: a conexão vai ser encerrada quando retornar a resposta;
 
-*X-Powered-By: PHP/8.5.11*: indica a tecnologia usada, no caso o PHP e a versão dele;
+`X-Powered-By: PHP/8.5.11`: indica a tecnologia usada, no caso o PHP e a versão dele;
 
-*Content-Type: text/html; charset=UTF-8*: é um informativo pro navegador que é um documento em HTML e usa os caracteres UTF-8 (, ´ , ~ , ^);
+`Content-Type: text/html; charset=UTF-8`: é um informativo pro navegador que é um documento em HTML e usa os caracteres UTF-8 (, ´ , ~ , ^);
 
-*Content-Length: 628*: indica o tamanho do corpo da resposta em bytes
+`Content-Length: 628`: indica o tamanho do corpo da resposta em bytes
 
 ## 3. Perguntas
 
@@ -117,9 +118,9 @@ Não, os códigos em PHP só são visíveis do lado do servidor. já que navegad
 
 **3.3 Na saída do curl, o que indicam a primeira linha, o cabeçalho `Content-type` e o cabeçalho `X-Powered-By`?**
 
-*1 Linha do Cabeçalho:*: Indica a versão do HTTP e status da resposta.
+`1 Linha do Cabeçalho:`: Indica a versão do HTTP e status da resposta.
 
-*Content-type*: é um informativo pro navegador que é um documento em HTML e usa os caracteres UTF-8
+`Content-type`: é um informativo pro navegador que é um documento em HTML e usa os caracteres UTF-8
 
-*X-Powered-By*: indica a tecnologia usada
+`X-Powered-By`: indica a tecnologia usada
 
