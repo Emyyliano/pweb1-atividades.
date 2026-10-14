@@ -1,0 +1,89 @@
+/* Projeto integrador v1: Perfil do Estudante
+   Crie aqui o estilo do seu perfil, com os dois temas (R9). */
+:root {
+  --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --espacamento-padrao: 20px;
+  --raio-borda: 8px;
+}
+
+.tema-claro {
+  --fundo: #f5f7f6;
+  --texto: #1e2a24;
+  --fundo-cartao: #ffffff;
+  --borda: #cccccc;
+  --link: #0056b3;
+  --link-hover: #003d82;
+}
+
+.tema-escuro {
+  --fundo: #000000;
+  --texto: #e6ece8;
+  --fundo-cartao: #1e2622;
+  --borda: #2c3832;
+  --link: #66b3ff;
+  --link-hover: #99ccff;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--fundo);
+  color: var(--texto);
+  margin: 0;
+  padding: var(--espacamento-padrao);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--borda);
+}
+
+nav a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--borda);
+  margin: 30px 0;
+}
+
+.cartao-projeto {
+  background-color: var(--fundo-cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-borda);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cartao-projeto h3 {
+  margin-top: 0;
+  color: var(--link);
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--borda);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
