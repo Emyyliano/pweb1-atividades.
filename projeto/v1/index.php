@@ -1,10 +1,8 @@
 <?php
 // =====================================================================
 // Projeto integrador v1: Perfil do Estudante
-// Commit 2: Adiciona páginas de habilidades e projetos
+// Commit 3: Adiciona detalhes do projeto e página 404
 // =====================================================================
-
-// 1. Dados do perfil
 $perfil = [
     'nome' => 'Emyliano Carvalho Costa',
     'curso' => 'Análise e Desenvolvimento de Sistemas',
@@ -32,6 +30,18 @@ $projetos = [
     ]
 ];
 $pagina = $_GET['pagina'] ?? 'inicio';
+
+if ($pagina === 'projeto') {
+    $id = (int) ($_GET['id'] ?? 0);
+    if (!isset($projetos[$id])) {
+        $pagina = '404_projeto'; 
+        http_response_code(404);
+    }
+} 
+elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projetos') {
+    $pagina = '404_pagina';
+    http_response_code(404);
+}
 
 ?>
 <!DOCTYPE html>
@@ -77,6 +87,29 @@ $pagina = $_GET['pagina'] ?? 'inicio';
           <p><a href="?pagina=projeto&id=<?= $id ?>">Ver detalhes do projeto</a></p>
         </div>
       <?php endforeach; ?>
+
+    <?php elseif ($pagina === 'projeto'): ?>
+      <?php 
+        $id = (int) $_GET['id'];
+        $projeto_atual = $projetos[$id];
+      ?>
+      <div class="cartao-projeto">
+        <h2><?= htmlspecialchars($projeto_atual['titulo']) ?></h2>
+        <p><strong>Descrição:</strong> <?= htmlspecialchars($projeto_atual['descricao']) ?></p>
+        <p><strong>Tecnologias:</strong> <?= htmlspecialchars($projeto_atual['tecnologias']) ?></p>
+        <br>
+        <a href="?pagina=projetos">← Voltar para a lista</a>
+      </div>
+
+    <?php elseif ($pagina === '404_projeto'): ?>
+      <h2>Projeto não encontrado</h2>
+      <p>O ID que tentaste acessar não existe no nosso sistema.</p>
+      <a href="?pagina=projetos">← Voltar para a lista</a>
+
+    <?php elseif ($pagina === '404_pagina'): ?>
+      <h2>Página não encontrada</h2>
+      <p>A página que solicitaste não existe.</p>
+      <a href="?pagina=inicio">← Voltar ao início</a>
 
     <?php endif; ?>
   </main>
