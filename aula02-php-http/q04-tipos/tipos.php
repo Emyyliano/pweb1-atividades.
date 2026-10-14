@@ -7,7 +7,7 @@ var_dump((int) "3.9 kg");
 var_dump((bool) "0");
 var_dump((bool) "false");
 var_dump(0.1 + 0.2 == 0.3);
-//adicionadas por eu
+//adicionadas por mim
 var_dump((string) "3.9 kg");
 var_dump((float) "3.9 kg");
 ?></pre>

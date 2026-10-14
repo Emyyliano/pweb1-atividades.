@@ -24,7 +24,7 @@
 
 **1.2 Para que servem as chaves `{}` em `{$semestre}`?**
 
-para não haver erro de ambiguidade, elas dizem ao PHP que a string que está junto da variável não faz parte dela, por exemplo {$semestre}º -> 2º. Já quando remover as {} $semestreº -> vai dar erro pois não existe uma variável assim.
+para não haver erro de ambiguidade, elas dizem ao PHP que a string que está junto da variável não faz parte dela, por exemplo `{$semestre}º -> 2º`. Já quando remover as {} $semestreº -> vai dar erro pois não existe uma variável assim.
 
 ## 2. Saídas do terminal
 
@@ -42,16 +42,19 @@ para não haver erro de ambiguidade, elas dizem ao PHP que a string que está ju
 ```
 
 **Explicação linha por linha:**
-Não entendi o que tem que explicar, a resposta é exatamente a questão anterior mas vamos lá.
-*Aluno: Emyliano*: está entre " ", logo vai exibir a string que está dentro variavel $nome na mensagem, vale pro 1 e 2.
-*Aluno: $nome*: exibiu a variável pois ' ', exibe exatamente o que está lá dentro.
+
+`Aluno: Emyliano`: está entre " ", logo vai exibir a string que está dentro variavel $nome na mensagem, vale pro 1 e 2.
+
+`Aluno: $nome`: exibiu a variável pois ' ', exibe exatamente o que está lá dentro.
 
 ## 3. Perguntas
 
 **3.1 Em quais linhas sua previsão errou? Explique o motivo.**
 
-*"Cursa o {$semestre}º semestre de $curso"*: na minha cabeça não fazia sentido o {}, pois outra linguagem para exibir o que tem dentro da variável é exatamente assim (esqueci qual era), já que no PHP so precisa do cifrão.
-*<?= $nome ?>*: pra mim só iria aparecer o "Emyliano", ao inves de "Atalho: Emyliano"
+`"Cursa o {$semestre}º semestre de $curso"`: na minha cabeça não fazia sentido o {}, pois outra linguagem para exibir o que tem dentro da variável é exatamente assim (esqueci qual era), já que no PHP so precisa do cifrão.
+
+`<?= $nome ?>`: pra mim só iria aparecer o "Emyliano", ao inves de "Atalho: Emyliano"
 
 **3.2 Por que `$nome . $curso` aparece sem espaço entre as palavras? Como corrigir?**
+
 Porque ele concatena as duas variáveis, ai ficam juntas. Para resolver basta colocar " " entre elas para imprimir com espaço: `$nome . " " . $curso`.
