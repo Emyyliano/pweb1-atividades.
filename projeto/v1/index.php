@@ -1,7 +1,7 @@
 <?php
 // =====================================================================
 // Projeto integrador v1: Perfil do Estudante
-// Commit 4: Adiciona tema claro e escuro com cookie
+// Commit 5: Adiciona rota em JSON
 // =====================================================================
 $perfil = [
     'nome' => 'Emyliano Carvalho Costa',
@@ -31,26 +31,34 @@ $projetos = [
 ];
 $tema_recebido = $_GET['tema'] ?? $_COOKIE['tema'] ?? 'claro';
 
-if ($tema_recebido === 'escuro') {
-    $tema = 'escuro';
+if ($tema_recebido === 'escuro') {$tema = 'escuro';
 } else {
     $tema = 'claro';
 }
+
 if (isset($_GET['tema'])) {
     setcookie('tema', $tema, time() + (30 * 24 * 60 * 60));
 }
-$pagina = $_GET['pagina'] ?? 'inicio';
+
+if (isset($_GET['formato']) &&$_GET['formato'] === 'json') {
+    header('Content-Type: application/json; charset=utf-8');
+    
+    echo json_encode([
+        'perfil' => $perfil,
+        'projetos' => $projetos
+    ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    exit;
+}
+$pagina =$_GET['pagina'] ?? 'inicio';
 
 if ($pagina === 'projeto') {
     $id = (int) ($_GET['id'] ?? 0);
     
-    if (!isset($projetos[$id])) {
-        $pagina = '404_projeto'; 
+    if (!isset($projetos[$id])) {$pagina = '404_projeto'; 
         http_response_code(404);
     }
 } 
-elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projetos') {
-    $pagina = '404_pagina';
+elseif ($pagina !== 'inicio' &&$pagina !== 'habilidades' && $pagina !== 'projetos') {$pagina = '404_pagina';
     http_response_code(404);
 }
 
@@ -71,7 +79,6 @@ elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projet
           <a href="?pagina=inicio">Início</a> |
           <a href="?pagina=habilidades">Habilidades</a> |
           <a href="?pagina=projetos">Projetos</a> |
-          <!-- Link inteligente: se estiver claro, o link muda para escuro e vice-versa -->
           <a href="?tema=<?= $tema === 'claro' ? 'escuro' : 'claro' ?>">Trocar Tema</a>
       </nav>
   </header>
@@ -82,55 +89,4 @@ elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projet
       <ul>
         <li><strong>Nome:</strong> <?= htmlspecialchars($perfil['nome']) ?></li>
         <li><strong>Curso:</strong> <?= htmlspecialchars($perfil['curso']) ?></li>
-        <li><strong>Campus:</strong> <?= htmlspecialchars($perfil['campus']) ?></li>
-        <li><strong>Cidade:</strong> <?= htmlspecialchars($perfil['cidade']) ?></li>
-      </ul>
-      <p><?= htmlspecialchars($perfil['apresentacao']) ?></p>
-
-    <?php elseif ($pagina === 'habilidades'): ?>
-      <h2>As minhas habilidades</h2>
-      <p>Tenho <?= count($perfil['habilidades']) ?> habilidades principais:</p>
-      <p><?= htmlspecialchars(implode(', ', $perfil['habilidades'])) ?></p>
-
-    <?php elseif ($pagina === 'projetos'): ?>
-      <h2>Meus Projetos</h2>
-      <?php foreach ($projetos as $id => $projeto): ?>
-        <div class="cartao-projeto">
-          <h3><?= htmlspecialchars($projeto['titulo']) ?></h3>
-          <p><a href="?pagina=projeto&id=<?= $id ?>">Ver detalhes do projeto</a></p>
-        </div>
-      <?php endforeach; ?>
-
-    <?php elseif ($pagina === 'projeto'): ?>
-      <?php 
-        $id = (int) $_GET['id'];
-        $projeto_atual = $projetos[$id];
-      ?>
-      <div class="cartao-projeto">
-        <h2><?= htmlspecialchars($projeto_atual['titulo']) ?></h2>
-        <p><strong>Descrição:</strong> <?= htmlspecialchars($projeto_atual['descricao']) ?></p>
-        <p><strong>Tecnologias:</strong> <?= htmlspecialchars($projeto_atual['tecnologias']) ?></p>
-        <br>
-        <a href="?pagina=projetos">← Voltar para a lista</a>
-      </div>
-
-    <?php elseif ($pagina === '404_projeto'): ?>
-      <h2>Projeto não encontrado</h2>
-      <p>O ID que tentaste aceder não existe no nosso sistema.</p>
-      <a href="?pagina=projetos">← Voltar para a lista</a>
-
-    <?php elseif ($pagina === '404_pagina'): ?>
-      <h2>Página não encontrada</h2>
-      <p>A página que solicitaste não existe.</p>
-      <a href="?pagina=inicio">← Voltar ao início</a>
-
-    <?php endif; ?>
-  </main>
-  <hr>
-  <footer>
-    <p>Tema atual: <strong><?= $tema ?></strong></p>
-    <p>&copy; <?= date('Y') ?> - <?= htmlspecialchars($perfil['nome']) ?></p>
-  </footer>
-
-</body>
-</html>
+        <li><strong>Campus:</strong> <?= htmlspecialchars($perfil
