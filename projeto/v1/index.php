@@ -1,7 +1,7 @@
 <?php
 // =====================================================================
 // Projeto integrador v1: Perfil do Estudante
-// Commit 3: Adiciona detalhes do projeto e página 404
+// Commit 4: Adiciona tema claro e escuro com cookie
 // =====================================================================
 $perfil = [
     'nome' => 'Emyliano Carvalho Costa',
@@ -29,10 +29,21 @@ $projetos = [
         'tecnologias' => 'Lua, Roblox Studio'
     ]
 ];
+$tema_recebido = $_GET['tema'] ?? $_COOKIE['tema'] ?? 'claro';
+
+if ($tema_recebido === 'escuro') {
+    $tema = 'escuro';
+} else {
+    $tema = 'claro';
+}
+if (isset($_GET['tema'])) {
+    setcookie('tema', $tema, time() + (30 * 24 * 60 * 60));
+}
 $pagina = $_GET['pagina'] ?? 'inicio';
 
 if ($pagina === 'projeto') {
     $id = (int) ($_GET['id'] ?? 0);
+    
     if (!isset($projetos[$id])) {
         $pagina = '404_projeto'; 
         http_response_code(404);
@@ -52,14 +63,16 @@ elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projet
   <title>Meu perfil</title>
   <link rel="stylesheet" href="estilo.css">
 </head>
-<body>
+<body class="tema-<?= $tema ?>">
   <header>
       <h1><?= htmlspecialchars($perfil['nome']) ?></h1>
       <p><?= htmlspecialchars($perfil['curso']) ?></p>
       <nav>
           <a href="?pagina=inicio">Início</a> |
           <a href="?pagina=habilidades">Habilidades</a> |
-          <a href="?pagina=projetos">Projetos</a>
+          <a href="?pagina=projetos">Projetos</a> |
+          <!-- Link inteligente: se estiver claro, o link muda para escuro e vice-versa -->
+          <a href="?tema=<?= $tema === 'claro' ? 'escuro' : 'claro' ?>">Trocar Tema</a>
       </nav>
   </header>
   <hr>
@@ -103,7 +116,7 @@ elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projet
 
     <?php elseif ($pagina === '404_projeto'): ?>
       <h2>Projeto não encontrado</h2>
-      <p>O ID que tentaste acessar não existe no nosso sistema.</p>
+      <p>O ID que tentaste aceder não existe no nosso sistema.</p>
       <a href="?pagina=projetos">← Voltar para a lista</a>
 
     <?php elseif ($pagina === '404_pagina'): ?>
@@ -115,6 +128,7 @@ elseif ($pagina !== 'inicio' && $pagina !== 'habilidades' && $pagina !== 'projet
   </main>
   <hr>
   <footer>
+    <p>Tema atual: <strong><?= $tema ?></strong></p>
     <p>&copy; <?= date('Y') ?> - <?= htmlspecialchars($perfil['nome']) ?></p>
   </footer>
 
