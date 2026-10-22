@@ -57,12 +57,16 @@ Fatal error: Uncaught TypeError: Livro::__construct(): Argument #3 ($ano) must b
 
 **a) Quantas classes e quantos objetos existem no seu `livro.php`?**
 
-_(responda aqui)_
+existem 1 classe `Livro` e 2 objetos `$livro1` e `$livro2`
 
 **b) No `var_dump`, o que significam `object(Livro)#2` e o `(5)`?**
 
-_(responda aqui)_
+O `object(Livro)`: indica que o tipo de dado é um objeto criado a partir da classe `Livro`
+
+`#2`: é o número de identificação único que o PHP deu a ele na memória do servidor
+
+`(5)`: significa que esse objeto tem 5 propriedades armazenadas dentro dele  (`título, autor, ano, preço e disponível`)
 
 **c) O que o `declare(strict_types=1)` mudou no resultado do item 5?**
 
-_(responda aqui)_
+`declare(strict_types=1)`: força o PHP a não interpretar uma string que tem número em um int, no caso o `'1938'`
