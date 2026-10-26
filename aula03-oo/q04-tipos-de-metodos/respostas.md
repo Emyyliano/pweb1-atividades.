@@ -54,34 +54,34 @@ bool(false)
 
 **2.1 Saída do código original**: `php q04-tipos-de-metodos/termostato.php`
 
-```text
-(cole aqui a saída do terminal)
+```
+Laboratório 1: 25 °C (alvo 22 °C) - resfriando<br>Laboratório 1: 23 °C (alvo 22 °C) - resfriando<br>Laboratório 1: 23 °C (alvo 24 °C) - ok<br>33<br>bool(false)
 ```
 
 **Explicação:**
 
-_(responda aqui)_
+Faz a comparação da temperatura do laboratório e o graus de que ela deve estar
 
 **2.2 Saída com os métodos novos**
 
-```text
-(cole aqui a saída do terminal)
+```
+Laboratório 1: 28 °C (alvo 24 °C) - resfriando<br>
 ```
 
 **Explicação:**
 
-_(responda aqui)_
+Como indicado no programa, ele aqueceu o local
 
 ## 3. Perguntas
 
 **a) Sua previsão do item 1.2 acertou todas as linhas? Explique cada diferença.**
 
-_(responda aqui)_
+Sim, todas certas
 
 **b) Por que `echo $sala->getTemperatura() + 10` funciona, mas `$sala->mostrarStatus() + 10` não faria sentido?**
 
-_(responda aqui)_
+Porque o `$sala->getTemperatura()` me devolve um número (`float`) através do return, permitindo que o PHP faça a soma matemática. Já o `$sala->mostrarStatus()` é do tipo void (não devolve nenhum dado, apenas imprime texto na tela), então tentar somar + 10 com algo "vazio" causaria um erro fatal no PHP (`TypeError`).
 
 **c) Qual método chama outro método do mesmo objeto?**
 
-_(responda aqui)_
+O método que faz isso é o `mostrarStatus()`. Dentro dele, o método `$this->precisaResfriar()` é chamado para avaliar automaticamente se o texto impresso na tela deve exibir a palavra "resfriando" ou "ok". Isso é feito utilizando o `$this->` para reaproveitar a verificação matemática sem a necessidade de reescrever a regra.
