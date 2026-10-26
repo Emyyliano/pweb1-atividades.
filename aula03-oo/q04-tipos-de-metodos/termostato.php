@@ -34,7 +34,15 @@ class Termostato
         $situacao = $this->precisaResfriar() ? 'resfriando' : 'ok';
         echo "{$this->local}: {$this->temperatura} °C (alvo {$this->alvo} °C) - {$situacao}<br>";
     }
-    
+    public function aquecer(float $graus): void 
+    {
+        $this->temperatura += $graus;
+    }
+
+    public function diferencaParaAlvo(): float 
+    {
+        return abs($this->temperatura - $this->alvo);
+    }
 }
 
 $sala = new Termostato();
@@ -47,3 +55,5 @@ $sala->definirAlvo(24);
 $sala->mostrarStatus();
 echo $sala->getTemperatura() + 10, "<br>";
 var_dump($sala->precisaResfriar());
+$sala->aquecer(5);
+$sala->mostrarStatus();
