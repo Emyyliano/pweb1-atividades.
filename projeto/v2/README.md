@@ -2,10 +2,78 @@
 
 **Autor(a):** Emyliano Carvalho Costa
 
+## Estrutura das Classes (Projeto Integrador v2)
+
+**Classe `Projeto`**
+
+| Visibilidade | Atributo / Método | Tipo / Retorno | 
+| :--- | :--- | :--- | 
+| `private` | `$titulo` | `string` | 
+| `private` | `$descricao` | `string` | 
+| `private` | `$tecnologias` | `string` | 
+| `public` | `__construct(string $titulo, string $descricao, string $tecnologias)` | `-` | 
+| `public` | `getTitulo()` | `string` | 
+| `public` | `getDescricao()` | `string` | 
+| `public` | `getTecnologias()` | `string` | 
+| `public` | `paraArray()` | `array` | 
+
+**Classe `Perfil`**
+
+| Visibilidade | Atributo / Método | Tipo / Retorno | 
+| :--- | :--- | :--- | 
+| `private` | `$nome` | `string` | 
+| `private` | `$curso` | `string` | 
+| `private` | `$campus` | `string` | 
+| `private` | `$cidade` | `string` | 
+| `private` | `$apresentacao` | `string` | 
+| `private` | `$habilidades` | `array` | 
+| `private` | `$projetos` | `array` | 
+| `public` | `__construct(string $nome, string $curso, string $campus, string $cidade, string $apresentacao, array $habilidades)` | `-` | 
+| `public` | `adicionarProjeto(Projeto $projeto)` | `void` | 
+| `public` | `getProjeto(int $id)` | `Projeto` | 
+| `public` | `getNome()` | `string` | 
+| `public` | `getCurso()` | `string` | 
+| `public` | `getCampus()` | `string` | 
+| `public` | `getCidade()` | `string` | 
+| `public` | `getApresentacao()` | `string` | 
+| `public` | `getHabilidades()` | `array` | 
+| `public` | `getProjetos()` | `array` | 
+| `public` | `paraArray()` | `array` | 
+
+# Comparação de um trecho do V1 para o V2
+
+**Trecho v1**
+
+```
+$perfil = [
+    'nome' => 'Emyliano Carvalho Costa',
+    'curso' => 'Análise e Desenvolvimento de Sistemas',
+    'campus' => 'IFCE Campus Boa Viagem',
+    'cidade' => 'Boa Viagem',
+    'apresentacao' => 'Desenvolvedor focado em interfaces, web design e administração de sistemas...',
+    'habilidades' => ['Figma', 'PHP', 'JavaScript', 'React', 'Linux']
+];
+```
+
+**Trecho v2**
+
+```
+class Perfil
+{
+    private string $nome;
+    private string $curso;
+    private string $campus;
+    private string $cidade;
+    private string $apresentacao;
+    private array $habilidades;
+    private array $projetos = [];
+}
+```
+
 ## Como executar
 
 ```
-cd projeto/v1
+cd projeto/v2
 php -S localhost:8000 -d display_errors=1 -d output_buffering=0
 ```
 
@@ -39,10 +107,11 @@ Complete com todas as rotas do seu projeto.
 ```
 HTTP/1.1 200 OK
 Host: localhost:8000
-Date: Wed, 14 Oct 2026 16:06:00 GMT
+Date: Thu, 29 Oct 2026 02:21:07 GMT
 Connection: close
 X-Powered-By: PHP/8.5.11
 Content-type: text/html; charset=UTF-8
+
 
 <!DOCTYPE html>
 ...
@@ -57,7 +126,7 @@ A requisição para a pagina deu certo, retornando a resposta 200 OK
 ```
 HTTP/1.1 404 Not Found
 Host: localhost:8000
-Date: Wed, 14 Oct 2026 16:14:04 GMT
+Date: Thu, 29 Oct 2026 02:23:30 GMT
 Connection: close
 X-Powered-By: PHP/8.5.11
 Content-type: text/html; charset=UTF-8
@@ -74,10 +143,10 @@ como não existe um projeto 99, o código entende que a página não existe e re
 ```
 HTTP/1.1 200 OK
 Host: localhost:8000
-Date: Wed, 14 Oct 2026 16:15:24 GMT
+Date: Thu, 29 Oct 2026 02:23:58 GMT
 Connection: close
 X-Powered-By: PHP/8.5.11
-Set-Cookie: tema=escuro; expires=Fri, 13 Nov 2026 16:15:24 GMT; Max-Age=2592000
+Set-Cookie: tema=escuro; expires=Sat, 28 Nov 2026 02:23:58 GMT; Max-Age=2592000
 Content-type: text/html; charset=UTF-8
 
 <!DOCTYPE html>
@@ -99,20 +168,18 @@ Quem faz o trabalho de gravar o tema no navegador é o cabeçalho `Set-Cookie`. 
 
 ```
 {
-    "perfil": {
-        "nome": "Emyliano Carvalho Costa",
-        "curso": "Análise e Desenvolvimento de Sistemas",
-        "campus": "IFCE Campus Boa Viagem",
-        "cidade": "Boa Viagem",
-        "apresentacao": "Desenvolvedor focado em interfaces, web design e administração de sistemas...",
-        "habilidades": [
-            "Figma",
-            "PHP",
-            "JavaScript",
-            "React",
-            "Linux"
-        ]
-    },
+    "nome": "Emyliano Carvalho Costa",
+    "curso": "Análise e Desenvolvimento de Sistemas",
+    "campus": "IFCE Campus Boa Viagem",
+    "cidade": "Boa Viagem",
+    "apresentacao": "Desenvolvedor focado em interfaces, web design e administração de sistemas...",
+    "habilidades": [
+        "Figma",
+        "PHP",
+        "JavaScript",
+        "React",
+        "Linux"
+    ],
     "projetos": {
         "1": {
             "titulo": "IVolley",
@@ -140,18 +207,23 @@ Aqui, é verifcado se na URL foi digitado o `?foramto=json`, depois que ele conf
 **2.5 Log do servidor** das quatro requisições acima
 
 ```
-[Wed Oct 14 17:39:53 2026] [::1]:61005 Accepted
-[Wed Oct 14 17:39:53 2026] [::1]:61005 [200]: GET /index.php?pagina=habilidades
-[Wed Oct 14 17:39:53 2026] [::1]:61005 Closing
-[Wed Oct 14 17:40:06 2026] [::1]:61006 Accepted
-[Wed Oct 14 17:40:06 2026] [::1]:61006 [200]: GET /index?pagina=habilidades
-[Wed Oct 14 17:40:06 2026] [::1]:61006 Closing
-[Wed Oct 14 17:40:16 2026] [::1]:61007 Accepted
-[Wed Oct 14 17:40:16 2026] [::1]:61007 [200]: GET /?formato=json
-[Wed Oct 14 17:40:16 2026] [::1]:61007 Closing
-[Wed Oct 14 17:40:21 2026] [::1]:61008 Accepted
-[Wed Oct 14 17:40:21 2026] [::1]:61008 [200]: GET /?tema=escuro
-[Wed Oct 14 17:40:21 2026] [::1]:61008 Closing
+[Wed Oct 28 23:19:17 2026] [::1]:52229 Closing
+[Wed Oct 28 23:20:13 2026] [::1]:57382 Accepted
+[Wed Oct 28 23:20:13 2026] [::1]:57382 [200]: GET /?pagina=projeto&id=2
+[Wed Oct 28 23:20:13 2026] [::1]:57382 Closing
+[Wed Oct 28 23:21:07 2026] [::1]:54184 Accepted
+[Wed Oct 28 23:21:07 2026] [::1]:54184 [200]: GET /?pagina=habilidades
+[Wed Oct 28 23:21:07 2026] [::1]:54184 Closing
+[Wed Oct 28 23:23:30 2026] [::1]:61234 Accepted
+[Wed Oct 28 23:23:30 2026] [::1]:61234 [404]: GET /?pagina=projeto&id=99
+[Wed Oct 28 23:23:30 2026] [::1]:61234 Closing
+[Wed Oct 28 23:23:58 2026] [::1]:61240 Accepted
+[Wed Oct 28 23:23:58 2026] [::1]:61240 [200]: GET /?tema=escuro
+[Wed Oct 28 23:23:58 2026] [::1]:61240 Closing
+[Wed Oct 28 23:24:46 2026] [::1]:61244 Accepted
+[Wed Oct 28 23:24:46 2026] [::1]:61244 [200]: GET /?formato=json
+[Wed Oct 28 23:24:46 2026] [::1]:61244 Closing
+
 ```
 
 **Explicação:**
@@ -183,4 +255,4 @@ Eu validei por segurança. Como o valor vai direto para a classe do `<body>` no 
 
 **4.3 Qual foi a maior dificuldade e como você resolveu?**
 
-A minha maior dificuldade foi entender como misturar a lógica do PHP com os blocos de HTML (usando o if/elseif), sem deixar que o código vazasse ou gerasse erros visuais. Eu resolvi isso organizando o ficheiro em duas partes bem separadas: deixei toda a parte de "pensar" no topo, e a parte de "mostrar" apenas do meio para baixo.
+A parte do `$this ->` ainda me pega bastante, mas com ajuda, da pra corrigir os erros
